@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+    <aside id="bio-panel" class="cockpit-panel">
+        <div class="panel-header">BIO</div>
+        <div class="panel-content" id="bio-content">
+            <div id="about-me-container"></div>
+        </div>
+    </aside>
+
+    <section id="terminal-container" class="cockpit-panel">
+        <div class="panel-header">TERMINAL</div>
+        
+        <div id="output-container">
+            <div class="output-line">Alisher's Blog [Versiya 2.0]</div>
+            <div class="output-line">Buyruqlar ro'yxati uchun <span class="command-highlight">'help'</span> yozing.</div>
+        </div>
+        
+        <div id="input-line-container">
+            <span class="prompt">user@blog:~$</span>
+            <form id="input-form">
+                <input type="text" id="input-line" autocomplete="off" autofocus>
+            </form>
+        </div>
+    </section>
+
+    <aside id="log-panel" class="cockpit-panel">
+        <div class="panel-header">SYSTEM LOG</div>
+        <div class="panel-content" id="log-content">
+            </div>
+    </aside>
+
+<%- include('../partials/footer') %>

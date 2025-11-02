@@ -1,0 +1,202 @@
+/* ======================================= */
+/* 1. ASOSIY TUZILMA VA SARLAVHA / HOLAT */
+/* ======================================= */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a; /* Butun orqa fon */
+    color: #f0f0f0;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 16px;
+    overflow: hidden; /* Sahifaning o'zi skroll bo'lmasligi uchun */
+}
+
+/* Butun sahifani 3 qatorga bo'lamiz: header, main (egiluvchan), footer 
+*/
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ekran balandligiga tenglash */
+}
+
+/* Sarlavha satri (Yuqori) */
+.cockpit-header {
+    flex: 0 0 auto; /* O'lchamini o'zgartirmasin */
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #444;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.header-controls span {
+    margin-left: 8px;
+    cursor: default;
+}
+.header-controls .btn-close {
+    color: #ff5555;
+    font-weight: bold;
+}
+
+/* Holat satri (Past) */
+.cockpit-footer {
+    flex: 0 0 auto; /* O'lchamini o'zgartirmasin */
+    background-color: #1a1a1a;
+    border-top: 1px solid #444;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: #aaa;
+}
+.status-left, .status-right {
+    display: flex;
+    align-items: center;
+}
+.status-indicator.online {
+    width: 10px;
+    height: 10px;
+    background-color: #00FF00; /* Yashil indikator */
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 5px #00FF00;
+}
+.status-right span {
+    margin-left: 15px;
+}
+
+/* ======================================= */
+/* 2. ASOSIY 3 USTUNLI MAYDON (GRID) */
+/* ======================================= */
+
+/* Asosiy maydon (header va footer orasidagi).
+  Barcha bo'sh joyni egallaydi va 3 ustunli grid'ga aylanadi.
+*/
+.main-cockpit {
+    flex: 1 1 auto; /* Qolgan barcha bo'sh joyni egallash */
+    display: grid;
+    /* Reja: Chap (BIO) 300px, O'ng (LOG) 300px,
+      qolgan barcha markaz (1fr) TERMINAL'ga 
+    */
+    grid-template-columns: 300px 1fr 300px;
+    gap: 5px; /* Panellar orasidagi bo'shliq */
+    padding: 5px;
+    overflow: hidden; /* Bu konteyner skroll bo'lmasin */
+}
+
+/* Har bir panel uchun umumiy stillar */
+.cockpit-panel {
+    background-color: #111; /* Qora fon */
+    border: 1px solid #333; /* Ramka */
+    border-radius: 4px;
+    
+    /* Panel ichki tuzilmasi (sarlavha va kontent) */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Har bir panelning o'zi skrollni boshqaradi */
+}
+
+/* Har bir panelning sarlavhasi (masalan, "BIO", "TERMINAL") */
+.panel-header {
+    background-color: #1e1e1e;
+    padding: 4px 8px;
+    font-weight: bold;
+    color: #00FF00; /* Yashil sarlavha */
+    border-bottom: 1px solid #333;
+    flex: 0 0 auto; /* O'lchamini o'zgartirmasin */
+    text-align: center;
+}
+
+/* Har bir panelning asosiy kontenti */
+.panel-content {
+    flex: 1 1 auto; /* Qolgan bo'sh joyni egallash */
+    padding: 10px;
+    overflow-y: auto; /* Kontent sig'masa SKROLL bo'lish */
+}
+
+
+/* ======================================= */
+/* 3. INDIVIDUAL PANELLAR */
+/* ======================================= */
+
+/* CHAP PANEL (BIO) */
+#bio-content {
+    /* (rasm qo'shganimizda stillar qo'shamiz) */
+    color: #ccc;
+}
+/* Rasm uchun (agar qo'shsangiz) */
+.profile-image {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+/* MARKAZIY PANEL (TERMINAL) */
+/* Terminal panelining ichki tuzilmasi (skroll uchun) */
+#terminal-container {
+    padding: 0; /* Ichki padding'ni olib tashlaymiz, chunki o'zining kontenti bor */
+}
+
+/* Natijalar (tarix). Barcha bo'sh joyni egallaydi va skroll bo'ladi */
+#output-container {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Buyruq kiritish qatori (pastga yopishgan) */
+#input-line-container {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+    padding: 5px 10px;
+}
+
+.prompt {
+    color: #00FF00; /* Yashil prompt */
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+#input-form {
+    flex-grow: 1;
+}
+
+#input-line {
+    background-color: transparent;
+    border: none;
+    color: #f0f0f0;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 16px;
+    width: 100%;
+    padding: 0;
+}
+#input-line:focus {
+    outline: none;
+}
+
+/* Matnlarni ajratib ko'rsatish */
+.command-highlight {
+    color: #00FFFF; /* Moviy (cyan) */
+    font-weight: bold;
+}
+.output-line {
+    margin-bottom: 2px;
+}
+
+/* O'NG PANEL (LOG) */
+#log-content {
+    color: #555; /* Loglar xira rangda */
+    font-size: 0.8em;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
