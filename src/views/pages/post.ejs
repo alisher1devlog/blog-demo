@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<div class="page-content post-full">
+    <% if (typeof post !== 'undefined') { %>
+        
+        <h1><%= post.title %></h1>
+        <small class="article-meta">
+            Nashr qilindi: <%= new Date(post.createdAt).toLocaleDateString('uz-UZ', { dateStyle: 'long' }) %>
+        </small>
+        <hr>
+
+        <div class="post-content">
+            <%- post.content %>
+        </div>
+
+        <br>
+        <a href="/blog" class="btn-back">&larr; Barcha maqolalarga qaytish</a>
+
+    <% } else { %>
+        <h1>Maqola topilmadi (404)</h1>
+        <p>Afsus, siz qidirayotgan sahifa mavjud emas yoki o'chirilgan.</p>
+        <a href="/blog" class="btn-back">&larr; Barcha maqolalarga qaytish</a>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>
